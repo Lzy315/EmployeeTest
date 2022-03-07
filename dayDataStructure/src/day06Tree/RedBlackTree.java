@@ -129,7 +129,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     public void put(Key key, Value val) {
         root = put(root,key,val);
         //根结点的颜色总是黑色
-        root.color = RED;
+        root.color = BLACK;
     }
 
     /**

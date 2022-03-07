@@ -48,10 +48,10 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * @return
      */
     private boolean isRed(Node x) {
-        if (x==null){
+        if(x == null){
             return false;
         }
-        return x.color==RED;
+        return x.color == RED;
     }
 
     /**
@@ -61,7 +61,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * @return
      */
     private Node rotateLeft(Node h) {
-        //找到h结点的右子结点x
+        Node x = h.right;
+        h.right = x.left;
+        x.left = h;
+        x.color = h.color;
+        h.color = RED;
+
+/*        //找到h结点的右子结点x
         Node x = h.right;
         //找到x结点的左子结点，让x结点的左子结点称为h结点的右子结点
         h.right = x.left;
@@ -70,8 +76,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         //让x结点的color属性变为h结点的color属性
         x.color = h.color;
         //让h结点的color属性变为RED
-        h.color = RED;
-
+        h.color = RED;*/
         return x;
     }
 
@@ -82,7 +87,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * @return
      */
     private Node rotateRight(Node h) {
-        //找到h结点的左子结点 x
+        Node x = h.left;
+        h.left = x.right;
+        x.right = h;
+        x.color = h.color;
+        h.color = RED;
+
+/*        //找到h结点的左子结点 x
         Node x = h.left;
         //让x结点的右子结点成为h结点的左子结点
         h.left = x.right;
@@ -91,7 +102,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         //让x结点的color属性变为h结点的color属性
         x.color = h.color;
         //让h结点的color属性为RED
-        h.color = RED;
+        h.color = RED;*/
 
         return x;
     }

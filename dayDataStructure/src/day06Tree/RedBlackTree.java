@@ -145,20 +145,19 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         }
         int cmp = key.compareTo(h.key);
         if (cmp > 0){
-            put(h.right, key, val);
-        }
-        if (cmp < 0 ){
-            put(h.left, key, val);
+            h.right = put(h.right, key, val);
+        }else if (cmp < 0 ){
+            h.left = put(h.left, key, val);
         }else {
             h.value = val;
         }
-        if (h.left.color == BLACK && h.right.color == RED){
+        if (isRed(h.left) && isRed(h.right)){
             rotateLeft(h);
         }
-        if (h.color == RED && h.left.color == RED){
+        if (isRed(h) && isRed(h.left)){
             rotateRight(h);
         }
-        if (h.left.color == RED && h.right.color == RED){
+        if (isRed(h.left) && isRed(h.right)){
             flipColors(h);
         }
         return h;

@@ -140,7 +140,48 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
      * @param val
      */
     private Node put(Node h, Key key, Value val) {
-        //判断h是否为空，如果为空则直接返回一个红色的结点就可以了
+        if(h == null){
+            return new Node(key,val,null,null,RED);
+        }
+        int cmp = key.compareTo(h.key);
+        if (cmp > 0){
+            put(h.right, key, val);
+        }
+        if (cmp < 0 ){
+            put(h.left, key, val);
+        }else {
+            h.value = val;
+        }
+        if (h.left.color == BLACK && h.right.color == RED){
+            rotateLeft(h);
+        }
+        if (h.color == RED && h.left.color == RED){
+            rotateRight(h);
+        }
+        if (h.left.color == RED && h.right.color == RED){
+            flipColors(h);
+        }
+        return h;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*        //判断h是否为空，如果为空则直接返回一个红色的结点就可以了
         if (h == null){
             //数量+1
             N++;
@@ -176,10 +217,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         if (isRed(h.left) && isRed(h.right)){
             flipColors(h);
         }
-
-
-
-        return h;
+        return h;*/
     }
 
     //根据key，从树中找出对应的值

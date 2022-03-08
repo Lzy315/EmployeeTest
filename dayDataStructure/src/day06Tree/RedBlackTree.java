@@ -164,23 +164,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         return h;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*        //判断h是否为空，如果为空则直接返回一个红色的结点就可以了
         if (h == null){
             //数量+1
@@ -220,7 +203,39 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
         return h;*/
     }
 
-    //根据key，从树中找出对应的值
+
+    public Value get(Key key){
+        return get(root, key);
+
+    }
+    public Value get(Node h, Key key){
+        if (h == null){
+            return null;
+        }
+        int cmp = key.compareTo(h.key);
+        if (cmp > 0){
+            return get(h.right, key);
+        }
+        if (cmp < 0 ){
+            return  get(h.left, key);
+        }else {
+            return h.value;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+/*    //根据key，从树中找出对应的值
     public Value get(Key key) {
         return get(root,key);
     }
@@ -241,5 +256,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
             return x.value;
         }
 
-    }
+    }*/
+
+
 }

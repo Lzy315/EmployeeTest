@@ -1,8 +1,80 @@
 package day09UF;
 
 public class UF_Tree_Weighted{
+
     //记录结点元素和该元素所在分组的标识
     private int[] eleAndGroup;
+    //记录并查集中数据的分组个数
+    private int count;
+
+
+    //用来存储每一个根结点对应的树中保存的结点的个数
+    private int[] sz;
+    //初始化并查集
+    public UF_Tree_Weighted(int N){
+        this.count = N;
+        eleAndGroup = new int[N];
+        sz = new  int[N];
+        for (int i = 0; i < eleAndGroup.length; i++) {
+            eleAndGroup[i] = i;
+        }
+
+        for (int i = 0; i < sz.length; i++) {
+            sz[i] = 1;
+        }
+
+    }
+
+    //获取当前并查集中的数据有多少个分组
+    public int count(){
+        return count;
+    }
+
+    //判断并查集中元素p和元素q是否在同一分组中
+    public boolean connected(int p,int q){
+        return find(p) == find(q);
+    }
+
+    //元素p所在分组的标识符
+    public int find(int p){
+
+        while (p != eleAndGroup[p])
+        {
+            p = eleAndGroup[p];
+        }
+        return p;
+
+
+    }
+
+    //把p元素所在分组和q元素所在分组合并
+    public void union(int p,int q){
+        //找到p元素和q元素所在组对应的树的根结点
+        int pRoot = find(p);
+        int qRoot = find(q);
+
+        if (pRoot == qRoot){
+            return;
+        }
+
+        if (sz[pRoot] < sz[qRoot]){
+            eleAndGroup[pRoot] = qRoot;
+            sz[qRoot] += sz[pRoot];
+        }else if (sz[pRoot] > sz[qRoot]){
+            eleAndGroup[qRoot] = pRoot;
+            sz[pRoot] += sz[qRoot];
+        }
+
+        //组的数量-1
+        this.count--;
+    }
+
+
+
+//源代码
+
+/*//记录结点元素和该元素所在分组的标识
+private int[] eleAndGroup;
     //记录并查集中数据的分组个数
     private int count;
 
@@ -79,5 +151,7 @@ public class UF_Tree_Weighted{
 
         this.count--;
 
-    }
+    }*/
+
+
 }

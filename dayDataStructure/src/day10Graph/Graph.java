@@ -31,11 +31,9 @@ public class Graph {
         adj[w].enqueue(v);
         E++;
     }
-
     //获取和顶点v相邻的所有顶点
     public Queue<Integer> adj(int v){
         return adj[v];
     }
-
 
 }

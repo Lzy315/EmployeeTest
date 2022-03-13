@@ -1,7 +1,8 @@
-package cn.itcast.algorithm.graph;
+package day10Graph;
 
-import cn.itcast.algorithm.linear.Stack;
-
+import day04Linear.Queue;
+import day04Linear.Stack;
+/*路径查找API 2022.03.13*/
 public class DepthFirstPaths {
     //索引代表顶点，值表示当前顶点是否已经被搜索
     private boolean[] marked;
@@ -13,11 +14,13 @@ public class DepthFirstPaths {
     //构造深度优先搜索对象，使用深度优先搜索找出G图中起点为s的所有路径
     public DepthFirstPaths(Graph G, int s){
         //初始化marked数组
-        this.marked = new boolean[G.V()];
+        marked = new boolean[G.V()];
+
         //初始化起点
         this.s = s;
+
         //初始化edgeTo数组
-        this.edgeTo = new int[G.V()];
+        edgeTo = new int[G.V()];
 
         dfs(G,s);
     }
@@ -28,14 +31,13 @@ public class DepthFirstPaths {
         marked[v] = true;
 
         //遍历顶点v的邻接表，拿到每一个相邻的顶点，继续递归搜索
-        for (Integer w : G.adj(v)) {
-            //如果顶点w没有被搜索，则继续递归搜索
-            if (!marked[w]){
-                edgeTo[w] = v;//到达顶点w的路径上的最后一个顶点是v
-                dfs(G,w);
+        for (Integer w: G.adj(v)) {
+            if (!marked[w]){  //如果顶点w没有被搜索，则继续递归搜索
+                edgeTo[w] = v;
+                dfs(G, w);
             }
-
         }
+
     }
 
     //判断w顶点与s顶点是否存在路径
@@ -48,21 +50,14 @@ public class DepthFirstPaths {
         if (!hasPathTo(v)){
             return null;
         }
-
         //创建栈对象，保存路径中的所有顶点
         Stack<Integer> path = new Stack<>();
-
         //通过循环，从顶点v开始，一直往前找，到找到起点为止
-        for (int x = v; x!=s;x = edgeTo[x]){
+        for (int x = v; x != s; x = edgeTo[x]) {
             path.push(x);
         }
-
         //把起点s放到栈中
         path.push(s);
-
         return path;
     }
-
-
-
 }

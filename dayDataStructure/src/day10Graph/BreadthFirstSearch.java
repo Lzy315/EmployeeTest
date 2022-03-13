@@ -21,14 +21,23 @@ public class BreadthFirstSearch {
 
     //使用广度优先搜索找出G图中v顶点的所有相邻顶点
     private void bfs(Graph G, int v) {
+        System.out.println(v);
         marked[v] = true;  //索引代表顶点，值表示当前顶点是否已经被搜索
         waitSearch.enqueue(v);  //队列，用来存储待搜索邻接表的点
         while (!waitSearch.isEmpty()){
             Integer wait = waitSearch.dequeue();
             for (Integer w : G.adj(wait)) {
                 if (!marked[w]){
-                    bfs(G, w);
+//                    bfs(G, w);
+                    System.out.println(w);
+                    waitSearch.enqueue(w);
+                    marked[w] = true;
                 }
+                else continue;
+//黑马的代码，我认为不是广度优先搜索
+//                if (!marked[w]) {
+//                    bfs(G, w);
+//                }
 
             }
         }

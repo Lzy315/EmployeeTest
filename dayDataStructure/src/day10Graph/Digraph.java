@@ -1,7 +1,7 @@
 package day10Graph;
 
 import day04Linear.Queue;
-
+/*有向图。2022.03.14*/
 public class Digraph {
     //顶点数目
    private int V;

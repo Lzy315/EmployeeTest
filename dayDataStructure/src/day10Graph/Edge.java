@@ -1,5 +1,5 @@
 package day10Graph;
-/*边类 2022.03.14*/
+/*无向边类 2022.03.14*/
 public class Edge implements Comparable<Edge>{
     private final int v;//顶点一
     private final int w;//顶点二

@@ -1,7 +1,8 @@
-package cn.itcast.algorithm.graph;
+package day10Graph;
 
-import cn.itcast.algorithm.linear.Queue;
-/*加权有向图，2022.03.15*/
+import day04Linear.Queue;
+
+/*加权有向图，200.03.15*/
 public class EdgeWeightedDigraph {
     //顶点总数
     private final int V;
@@ -9,6 +10,7 @@ public class EdgeWeightedDigraph {
     private int E;
     //邻接表
     private Queue<DirectedEdge>[] adj;
+
 
     //创建一个含有V个顶点的空加权有向图
     public EdgeWeightedDigraph(int V) {
@@ -18,10 +20,10 @@ public class EdgeWeightedDigraph {
         this.E = 0;
         //初始化邻接表
         this.adj = new Queue[V];
-
-        for (int i = 0; i < adj.length; i++) {
+        for (int i = 0; i <adj.length; i++) {
             adj[i] = new Queue<DirectedEdge>();
         }
+
     }
 
     //获取图中顶点的数量
@@ -41,6 +43,7 @@ public class EdgeWeightedDigraph {
         int v = e.from();
         adj[v].enqueue(e);
         E++;
+
     }
 
     //获取由顶点v指出的所有的边
@@ -52,9 +55,9 @@ public class EdgeWeightedDigraph {
     public Queue<DirectedEdge> edges() {
         //遍历图中的每一个顶点，得到该顶点的邻接表，遍历得到每一条边，添加到队列中返回即可
         Queue<DirectedEdge> allEdges = new Queue<>();
-        for (int v = 0;v<V;v++){
-            for (DirectedEdge edge : adj[v]) {
-                allEdges.enqueue(edge);
+        for (int v = 0; v < adj.length; v++) {
+            for (DirectedEdge e : adj[v]) {
+                allEdges.enqueue(e);
             }
         }
         return allEdges;

@@ -1,7 +1,7 @@
 package day10Graph;
 
 import day04Linear.Queue;
-
+/*加权无向图 2022.03.14*/
 public class EdgeWeightedGraph {
     //顶点总数
     private final int V;

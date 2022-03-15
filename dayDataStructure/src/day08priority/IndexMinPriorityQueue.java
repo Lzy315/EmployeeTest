@@ -51,7 +51,7 @@ public class IndexMinPriorityQueue<T extends Comparable<T>> {
         }
     }
 
-//注释过得不错就
+
 
     //交换堆中i索引和j索引处的值
     private void exch(int i, int j) {

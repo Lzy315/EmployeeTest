@@ -15,7 +15,7 @@ public class DirectedEdge {
 
 
     //获取边的权重值
-    public double Weight() {
+    public double weight() {
         return weight;
     }
 

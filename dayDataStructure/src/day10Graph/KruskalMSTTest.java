@@ -33,6 +33,8 @@ public class KruskalMSTTest {
 
         //创建一个KruskalMST对象，计算加权无向图中的最小生成树
         KruskalMST primMST = new KruskalMST(G);
+
+
         //获取最小生成树中的所有边
         Queue<Edge> edges = primMST.edges();
 
@@ -42,6 +44,7 @@ public class KruskalMSTTest {
             int w = e.other(v);
             double weight = e.weight();
             System.out.println(v+"-"+w+" :: "+weight);
+
         }
     }
 
